@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DSA.List.tests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,12 @@ namespace DSA
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("DSA");
 
-            Sorting.Sort.TestSort();
+            LinkedListTest llt = new LinkedListTest();
+            llt.RunAll();
+
         }
     }
 }
