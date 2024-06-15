@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -71,13 +72,14 @@ namespace DSA.test
         }
         protected int[] _CreateArrByOrderOfNumber(int from, int to, bool flagReverse=false)
         {
-            int[] arr;
-            int v;
             if(from > to || from == to)
             {
                 return new int[0];
             }
-            arr = new int[to - from + 1];
+
+            int[] arr = new int[to - from + 1];
+            int v;
+            
             if (!flagReverse)
             {
                 v = from;
@@ -96,5 +98,22 @@ namespace DSA.test
             }
             return arr;
         }
+        protected int[] _RandomArr(int from, int to)
+        {
+            int[] arr = _CreateArrByOrderOfNumber(from, to);
+            if(!(arr.Length < 2))
+            {
+                Random random = new Random();
+                for (int i = arr.Length - 1; i > 0; i--)
+                {
+                    int j = random.Next(0, i + 1);
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            return arr;
+        }
+
     }
 }

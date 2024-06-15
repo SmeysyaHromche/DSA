@@ -1,4 +1,5 @@
 ﻿using DSA.List.tests;
+using DSA.Sorting.tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace DSA
 
             LinkedListTest llt = new LinkedListTest();
             llt.RunAll();
+
+            SortingTests st = new SortingTests();
+            st.RunAll();
 
         }
     }
