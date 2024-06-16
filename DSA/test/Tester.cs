@@ -25,12 +25,12 @@ namespace DSA.test
             if (a != b)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                Console.WriteLine($"{test_name}: pass");
             }
             else
             {
                 Console.ForegroundColor= ConsoleColor.Green;
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                Console.WriteLine($"{test_name}: pass");
             }
             Console.ResetColor();
         }

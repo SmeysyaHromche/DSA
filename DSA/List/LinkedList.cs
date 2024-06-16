@@ -74,7 +74,7 @@ namespace DSA.List
 
         public int GetValue(int index)
         {
-            if (_len <= index || index <= 0)
+            if (_len <= index || index < 0)
             {
                 throw new IndexOutOfRangeException();
             }

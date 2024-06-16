@@ -22,8 +22,8 @@ namespace DSA
             SortingTests sorting_test = new SortingTests();
             sorting_test.RunAll();
 
-            //StackTest stack_test = new StackTest();
-            //stack_test.RunAll();
+            StackTest stack_test = new StackTest();
+            stack_test.RunAll();
         }
     }
 }
