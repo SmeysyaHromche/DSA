@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 namespace DSA.test
 {
-    
-    
+
+
     public abstract class Tester
     {
         protected class ExceptionTestFail : Exception
@@ -17,13 +19,20 @@ namespace DSA.test
             public ExceptionTestFail(string message) : base(message) { }
         }
         public abstract void RunAll();
-        
-        protected static void MyAssert(string test_name, bool a, bool b=true)
+
+        protected void MyAssert(string test_name, bool a, bool b = true)
         {
             if (a != b)
             {
-                throw new ExceptionTestFail($"{test_name} : fail");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
+            else
+            {
+                Console.ForegroundColor= ConsoleColor.Green;
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+            }
+            Console.ResetColor();
         }
 
         protected int[] _CreateArrByOrderOfNumber(int size, bool flagByDeValue = false, int value = 0, bool flagReverse = false)

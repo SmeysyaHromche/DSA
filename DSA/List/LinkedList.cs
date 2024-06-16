@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace DSA.List
 {
-    internal class MyLinkedList: IList
+    internal class MyLinkedList : IList
     {
-        protected ListNode _head = null;  
+        protected ListNode _head = null;
         protected int _len = 0;
 
-        public MyLinkedList() 
-        { 
+        public MyLinkedList()
+        {
         }
 
         public MyLinkedList(ref int[] arr)
         {
-            
+
             for (int i = 0; i < arr.Length; i++)
             {
-                AddLast(arr[i]);  
+                AddLast(arr[i]);
             }
 
         }
 
-        public MyLinkedList(int size, int value=0) 
+        public MyLinkedList(int size, int value = 0)
         {
             _head = new ListNode(value);
             ListNode aux = _head;
@@ -41,7 +41,7 @@ namespace DSA.List
         public void AddFirst(int value)
         {
             if (_len == 0)
-            { 
+            {
                 _head = new ListNode(value);
             }
             else
@@ -75,7 +75,7 @@ namespace DSA.List
         public int GetValue(int index)
         {
             if (_len <= index || index <= 0)
-            { 
+            {
                 throw new IndexOutOfRangeException();
             }
 
@@ -84,17 +84,17 @@ namespace DSA.List
             {
                 aux = (ListNode)aux.next;
             }
-            
+
             return aux.GetValue();
         }
 
         public int GetIndex(int value)
         {
             if (_len == 0)
-            {  
+            {
                 return -1;
             }
-            
+
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
@@ -110,8 +110,8 @@ namespace DSA.List
         }
 
         public void Clear()
-        { 
-            _head = null; 
+        {
+            _head = null;
             _len = 0;
         }
 
@@ -135,8 +135,8 @@ namespace DSA.List
             }
 
             ListNode aux = _head;
-            for (int i = 0; i < _len-1; i++)
-            { 
+            for (int i = 0; i < _len - 1; i++)
+            {
                 aux = aux.next;
             }
 
@@ -151,7 +151,7 @@ namespace DSA.List
             }
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
-            { 
+            {
                 Console.Write($"{aux.GetValue()} ");
                 aux = (ListNode)aux.next;
             }
@@ -165,7 +165,7 @@ namespace DSA.List
                 return new int[0];
             }
 
-            int[] array = new int[ _len ];
+            int[] array = new int[_len];
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
@@ -173,6 +173,11 @@ namespace DSA.List
                 aux = aux.next;
             }
             return array;
+        }
+
+        public int GetLength()
+        {
+            return _len;
         }
 
     }

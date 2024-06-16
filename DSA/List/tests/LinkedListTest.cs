@@ -25,196 +25,120 @@ namespace DSA.List.tests
             TestGetIndex();
             TestDeleteFirst();
             TestDeleteLast();
+            TestGetLength();
             Console.WriteLine("\n*** *** *** *** ***\n");
         }
         public void TestInitEmpty()
         {
-            try
-            {
-                MyLinkedList l = new MyLinkedList();
-                int[] test_arr = _CreateArrByOrderOfNumber(0);
-                int[] out_arr = l.GetArray();
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
-            }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            MyLinkedList l = new MyLinkedList();
+            int[] test_arr = _CreateArrByOrderOfNumber(0);
+            int[] out_arr = l.GetArray();
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByArr()
         {
-            try
-            {
-                int[] test_arr = _CreateArrByOrderOfNumber(10);
-                MyLinkedList l = new MyLinkedList(ref test_arr);
-                int[] out_arr = l.GetArray();
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
-            }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            int[] test_arr = _CreateArrByOrderOfNumber(10);
+            MyLinkedList l = new MyLinkedList(ref test_arr);
+            int[] out_arr = l.GetArray();
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByAddFirst()
         {
-            try
+            int[] test_arr = _CreateArrByOrderOfNumber(10);
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < test_arr.Length; i++)
             {
-                int[] test_arr = _CreateArrByOrderOfNumber(10);
-                MyLinkedList l = new MyLinkedList();
-                for (int i = 0; i < test_arr.Length; i++)
-                {
-                    l.AddFirst(test_arr[i]);
-                }
-                int[] out_arr = l.GetArray();
-                Array.Reverse(test_arr);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddFirst(test_arr[i]);
             }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            int[] out_arr = l.GetArray();
+            Array.Reverse(test_arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByAddLast()
         {
-            try
+            int[] test_arr = _CreateArrByOrderOfNumber(10);
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < test_arr.Length; i++)
             {
-                int[] test_arr = _CreateArrByOrderOfNumber(10);
-                MyLinkedList l = new MyLinkedList();
-                for (int i = 0; i < test_arr.Length; i++)
-                {
-                    l.AddLast(test_arr[i]);
-                }
-                int[] out_arr = l.GetArray();
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddLast(test_arr[i]);
             }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            int[] out_arr = l.GetArray();
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByStaticValue()
         {
-            try
-            {
-                MyLinkedList l = new MyLinkedList(100, 0);
-                int[] test_arr = _CreateArrByOrderOfNumber(100, true);
-                int[] out_arr = l.GetArray();
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
-            }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            MyLinkedList l = new MyLinkedList(100, 0);
+            int[] test_arr = _CreateArrByOrderOfNumber(100, true);
+            int[] out_arr = l.GetArray();
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr)); 
         }
 
         public void TestClear()
         {
-            try
-            {
-                MyLinkedList l = new MyLinkedList(100);
-                l.Clear();
-                int[] test_arr = { };
-                int[] out_arr = l.GetArray();
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
-            }
-            catch (ExceptionTestFail e)
-            {
-                    Console.WriteLine(e.Message);
-            }
+            MyLinkedList l = new MyLinkedList(100);
+            l.Clear();
+            int[] test_arr = { };
+            int[] out_arr = l.GetArray();
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestGetValue()
         {
-            try
+            MyLinkedList l = new MyLinkedList();
+            for(int i = 0; i < 100; i++)
             {
-                MyLinkedList l = new MyLinkedList();
-                for(int i = 0; i < 100; i++)
-                {
-                    l.AddLast(i);
-                }
-
-                MyAssert(MethodBase.GetCurrentMethod().Name, l.GetValue(99) == 99);
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddLast(i);
             }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            MyAssert(MethodBase.GetCurrentMethod().Name, l.GetValue(99) == 99);
         }
         public void TestGetIndex()
         {
-            try
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
             {
-                MyLinkedList l = new MyLinkedList();
-                for (int i = 0; i < 100; i++)
-                {
-                    l.AddLast(i);
-                }
-
-                MyAssert(MethodBase.GetCurrentMethod().Name, l.GetIndex(99) == 99);
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddLast(i);
             }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            MyAssert(MethodBase.GetCurrentMethod().Name, l.GetIndex(99) == 99);
         }
 
         public void TestDeleteFirst()
         {
-            try
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
             {
-                MyLinkedList l = new MyLinkedList();
-                for (int i = 0; i < 100; i++)
-                {
-                    l.AddLast(i);
-                }
-                l.DeleteFirst();
-                int[] out_arr = l.GetArray();
-                int[] test_arr = _CreateArrByOrderOfNumber(from:1, to:99);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddLast(i);
             }
-            catch (ExceptionTestFail e)
-            {  
-                Console.WriteLine(e.Message);
-            }
+            l.DeleteFirst();
+            int[] out_arr = l.GetArray();
+            int[] test_arr = _CreateArrByOrderOfNumber(from:1, to:99);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestDeleteLast()
         {
-            try
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
             {
-                MyLinkedList l = new MyLinkedList();
-                for (int i = 0; i < 100; i++)
-                {
-                    l.AddLast(i);
-                }
-                l.DeleteLast();
-                int[] out_arr = l.GetArray();
-                int[] test_arr = _CreateArrByOrderOfNumber(0, 98);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr), true);
-                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
+                l.AddLast(i);
             }
-            catch (ExceptionTestFail e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            l.DeleteLast();
+            int[] out_arr = l.GetArray();
+            int[] test_arr = _CreateArrByOrderOfNumber(0, 98);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestGetLength()
         {
-
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
+            {
+                l.AddLast(i);
+            }
+            MyAssert(MethodBase.GetCurrentMethod().Name, l.GetLength() == 100);
         }
     }
 }
