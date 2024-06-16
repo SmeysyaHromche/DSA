@@ -26,14 +26,14 @@ namespace DSA.Sorting.tests
             {
                 int[] not_sort_arr = _RandomArr(0, 100);
                 int min = Sort.FindMin(ref not_sort_arr);
-                MyAssert(MethodBase.GetCurrentMethod().Name, min == 0, true);
+                MyAssert(MethodBase.GetCurrentMethod().Name, min == 0);
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
                 return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestBubbleSort()
@@ -43,7 +43,7 @@ namespace DSA.Sorting.tests
                 int[] arr = _RandomArr(0, 100);
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.BubbleSort(ref arr);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr), true);
+                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
             }
             catch (ExceptionTestFail e)
             {
@@ -60,7 +60,7 @@ namespace DSA.Sorting.tests
                 int[] arr = _RandomArr(0, 100);
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.SelectionSortWithShifting(ref arr);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr), true);
+                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
             }
             catch (ExceptionTestFail e)
             {
@@ -77,7 +77,7 @@ namespace DSA.Sorting.tests
                 int[] arr = _RandomArr(0, 100);
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.SelectionSortWithShifting(ref arr);
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr), true);
+                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
             }
             catch (ExceptionTestFail e)
             {

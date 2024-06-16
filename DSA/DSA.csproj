@@ -51,6 +51,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorting\tests\SortingTest.cs" />
+    <Compile Include="Stack\Stack.cs" />
+    <Compile Include="Stack\tests\StackTest.cs" />
     <Compile Include="test\Tester.cs" />
   </ItemGroup>
   <ItemGroup>

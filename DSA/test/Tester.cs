@@ -18,7 +18,7 @@ namespace DSA.test
         }
         public abstract void RunAll();
         
-        protected static void MyAssert(string test_name, bool a, bool b)
+        protected static void MyAssert(string test_name, bool a, bool b=true)
         {
             if (a != b)
             {
