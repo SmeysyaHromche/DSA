@@ -35,14 +35,12 @@ namespace DSA.List.tests
                 int[] test_arr = _CreateArrByOrderOfNumber(0);
                 int[] out_arr = l.GetArray();
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
-
         }
 
         public void TestInitByArr()
@@ -53,13 +51,12 @@ namespace DSA.List.tests
                 MyLinkedList l = new MyLinkedList(ref test_arr);
                 int[] out_arr = l.GetArray();
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestInitByAddFirst()
@@ -75,13 +72,12 @@ namespace DSA.List.tests
                 int[] out_arr = l.GetArray();
                 Array.Reverse(test_arr);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestInitByAddLast()
@@ -96,13 +92,12 @@ namespace DSA.List.tests
                 }
                 int[] out_arr = l.GetArray();
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestInitByStaticValue()
@@ -113,13 +108,12 @@ namespace DSA.List.tests
                 int[] test_arr = _CreateArrByOrderOfNumber(100, true);
                 int[] out_arr = l.GetArray();
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestClear()
@@ -131,13 +125,12 @@ namespace DSA.List.tests
                 int[] test_arr = { };
                 int[] out_arr = l.GetArray();
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
-            catch(ExceptionTestFail e)
+            catch (ExceptionTestFail e)
             {
                     Console.WriteLine(e.Message);
-                    return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestGetValue()
@@ -151,13 +144,12 @@ namespace DSA.List.tests
                 }
 
                 MyAssert(MethodBase.GetCurrentMethod().Name, l.GetValue(99) == 99);
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
         public void TestGetIndex()
         {
@@ -170,13 +162,12 @@ namespace DSA.List.tests
                 }
 
                 MyAssert(MethodBase.GetCurrentMethod().Name, l.GetIndex(99) == 99);
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestDeleteFirst()
@@ -192,13 +183,12 @@ namespace DSA.List.tests
                 int[] out_arr = l.GetArray();
                 int[] test_arr = _CreateArrByOrderOfNumber(from:1, to:99);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {  
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestDeleteLast()
@@ -214,14 +204,17 @@ namespace DSA.List.tests
                 int[] out_arr = l.GetArray();
                 int[] test_arr = _CreateArrByOrderOfNumber(0, 98);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr), true);
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
+        public void TestGetLength()
+        {
+
+        }
     }
 }

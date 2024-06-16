@@ -32,7 +32,6 @@ namespace DSA.Sorting.tests
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
         }
 
@@ -44,13 +43,12 @@ namespace DSA.Sorting.tests
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.BubbleSort(ref arr);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestSelectSort()
@@ -61,13 +59,12 @@ namespace DSA.Sorting.tests
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.SelectionSortWithShifting(ref arr);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
 
         public void TestInsertSort()
@@ -78,13 +75,12 @@ namespace DSA.Sorting.tests
                 int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
                 Sort.SelectionSortWithShifting(ref arr);
                 MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
+                Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
             }
             catch (ExceptionTestFail e)
             {
                 Console.WriteLine(e.Message);
-                return;
             }
-            Console.WriteLine($"{MethodBase.GetCurrentMethod().Name}: pass");
         }
     }
 }
