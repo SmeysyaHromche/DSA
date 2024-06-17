@@ -2,6 +2,9 @@
 using DSA.Queue.tests;
 using DSA.Sorting.tests;
 using DSA.Stack.tests;
+
+using DSA.Sorting;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +31,7 @@ namespace DSA
 
             QueueTest queue_test = new QueueTest();
             queue_test.RunAll();
+            
         }
     }
 }

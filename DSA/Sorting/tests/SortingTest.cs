@@ -17,6 +17,7 @@ namespace DSA.Sorting.tests
             TestBubbleSort();
             TestSelectSort();
             TestInsertSort();
+            TestMergeSortWithRec();
             Console.WriteLine("\n*** *** *** *** ***\n");
         }
 
@@ -48,6 +49,14 @@ namespace DSA.Sorting.tests
             int[] arr = _RandomArr(0, 100);
             int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
             Sort.SelectionSortWithShifting(ref arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
+        }
+
+        public void TestMergeSortWithRec()
+        {
+            int[] arr = _RandomArr(0, 100);
+            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            Sort.MergeSortWithRec(ref arr);
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
         }
     }

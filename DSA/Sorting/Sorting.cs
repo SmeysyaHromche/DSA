@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,11 @@ namespace DSA.Sorting
 {
     public class Sort
     {
-        
+
+
+        // ********************************************************
+        //                     FINDING MINIMUM
+        // ********************************************************
         public static int FindMin(ref int[] arr)
         {
             int min_val = arr[0];
@@ -16,17 +21,21 @@ namespace DSA.Sorting
             for (int i = 1; i < arr.Length; i++)
             {
                 if (arr[i] < min_val)
-                { 
+                {
                     min_val = arr[i];
                 }
             }
 
             return min_val;
         }
+        // ********************************************************
 
+        // ********************************************************
+        //                      BUBBLE SORT
+        // ********************************************************
         public static void BubbleSort(ref int[] arr)
         {
-            
+
             int len = arr.Length;
             if (len < 2)
             {
@@ -35,7 +44,7 @@ namespace DSA.Sorting
 
             for (int i = 0; i < len; i++)
             {
-                for (int j = 0; j < len-1; j++)
+                for (int j = 0; j < len - 1; j++)
                 {
                     if (arr[j] > arr[j + 1])
                     {
@@ -43,13 +52,17 @@ namespace DSA.Sorting
                     }
                 }
             }
-            
-        }
 
-        
+        }
+        // ********************************************************
+
+
+        // ********************************************************
+        //                      SELECTION SORT
+        // ********************************************************
         public static void SelectionSortWithShifting(ref int[] arr)
         {
-            
+
             int len = arr.Length;
             if (len < 2)
             {
@@ -71,10 +84,15 @@ namespace DSA.Sorting
             }
 
         }
+        // ********************************************************
 
+
+        // ********************************************************
+        //                   INSERTION SORT
+        // ********************************************************
         public static void InsertSort(ref int[] arr)
         {
-            
+
             int len = arr.Length;
             if (len < 2)
             {
@@ -95,7 +113,60 @@ namespace DSA.Sorting
                 }
             }
         }
+        // ********************************************************
 
+
+        // ********************************************************
+        //                      MERGE SORT
+        // ********************************************************
+        public static void MergeSortWithRec(ref int[] arr)
+        {
+            int len = arr.Length;
+            int[] aux = new int[len];
+            arr.CopyTo(aux, 0);
+            MergeSortWithRecCut(ref arr, ref aux, 0, len);
+        }
+        private static void MergeSortWithRecCut(ref int[] arr, ref int[] aux, int from, int to)
+        {
+            if (to - from < 2)
+            {
+                return;
+            }
+            int middle = (to + from) / 2;
+            MergeSortWithRecCut(ref arr, ref aux, from, middle);
+            MergeSortWithRecCut(ref arr, ref aux, middle, to);
+            MergeSortWithRecMerging(ref arr, ref aux, from, middle, to);
+
+        }
+
+        private static void MergeSortWithRecMerging(ref int[] arr, ref int[] aux, int from, int middle , int to)
+        {
+            int i = from, j = middle;
+            for (int k = from; k < to; k++)
+            {
+                if (i < middle && j >= to)
+                {
+                    aux[k] = arr[i++];
+                }
+                else if( i < middle && arr[i] <= arr[j])
+                {
+                    aux[k] = arr[i++];
+                }
+                else
+                {
+                    aux[k] = arr[j++];
+                }
+            }
+
+            aux.CopyTo(arr, 0);
+
+        }
+        // ********************************************************
+
+
+        // ********************************************************
+        //                     HELPFULL PART
+        // ********************************************************
         private static void ArrWrite(bool input, ref int[] arr)
         {
             if (input == true)
