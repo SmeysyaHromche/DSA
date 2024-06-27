@@ -25,7 +25,7 @@ namespace DSA.test
             if (a != b)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{test_name}: pass");
+                Console.WriteLine($"{test_name}: fail");
             }
             else
             {

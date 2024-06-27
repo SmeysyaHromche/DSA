@@ -32,6 +32,8 @@ namespace DSA
             QueueTest queue_test = new QueueTest();
             queue_test.RunAll();
             
+            //SortingTests sorting_test =  new SortingTests();
+            //sorting_test.ParallelTests();
         }
     }
 }

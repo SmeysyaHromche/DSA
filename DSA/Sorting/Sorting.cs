@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -161,6 +162,33 @@ namespace DSA.Sorting
             aux.CopyTo(arr, 0);
 
         }
+        // ********************************************************
+
+        // ********************************************************
+        //                     QUIC  PART
+        // ********************************************************
+
+        public static void QuickSort(ref int[]arr)
+        {
+            QuickSortCore(ref arr, 0, arr.Length);
+        }
+
+        private static void QuickSortCore(ref int[] arr, int from, int to)
+        {
+            if(from < to)
+            {
+                int p = QuickSortParit(ref arr, from , to);
+                QuickSortCore(ref arr, from , p);
+                QuickSortCore(ref arr, p, to);
+            }
+        }
+
+        private static int QuickSortParit(ref int[] arr, int from, int to)
+        {
+            //int p = arr[];
+            return 0;
+        }
+
         // ********************************************************
 
 
