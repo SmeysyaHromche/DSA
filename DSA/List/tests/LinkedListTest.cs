@@ -22,10 +22,12 @@ namespace DSA.List.tests
             TestInitByStaticValue();
             TestClear();
             TestGetValue();
+            TestSetValue();
             TestGetIndex();
             TestDeleteFirst();
             TestDeleteLast();
             TestGetLength();
+            TestAccessByIndex();
             Console.WriteLine("\n*** *** *** *** ***\n");
         }
         public void TestInitEmpty()
@@ -95,6 +97,17 @@ namespace DSA.List.tests
             }
             MyAssert(MethodBase.GetCurrentMethod().Name, l.GetValue(99) == 99);
         }
+        
+        public void TestSetValue()
+        {
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
+            {
+                l.AddLast(i);
+            }
+            l.SetValue(78, -1);
+            MyAssert(MethodBase.GetCurrentMethod().Name, l.GetValue(78) == -1);
+        }
         public void TestGetIndex()
         {
             MyLinkedList l = new MyLinkedList();
@@ -139,6 +152,23 @@ namespace DSA.List.tests
                 l.AddLast(i);
             }
             MyAssert(MethodBase.GetCurrentMethod().Name, l.GetLength() == 100);
+        }
+
+        public void TestAccessByIndex()
+        {
+            MyLinkedList l = new MyLinkedList();
+            for (int i = 0; i < 100; i++)
+            {
+                l.AddLast(i);
+            }
+            try
+            {
+                l[100] = 10;
+                int test = l[100];
+            }
+            catch (IndexOutOfRangeException e)
+            { }
+            MyAssert(MethodBase.GetCurrentMethod().Name, 0 == l[0]);
         }
     }
 }

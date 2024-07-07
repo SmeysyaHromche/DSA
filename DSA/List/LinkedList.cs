@@ -85,7 +85,21 @@ namespace DSA.List
                 aux = (ListNode)aux.next;
             }
 
-            return aux.GetValue();
+            return aux.Value;
+        }
+
+        public void SetValue(int  index, int value)
+        {
+            if (index < 0 || index >= _len)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            ListNode aux = _head;
+            for (int i = 0; i < index; i++)
+            {
+                aux = aux.next;
+            }
+            aux.Value = value;
         }
 
         public int GetIndex(int value)
@@ -98,7 +112,7 @@ namespace DSA.List
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
-                if (aux.GetValue() == value)
+                if (aux.Value == value)
                 {
                     return i;
                 }
@@ -152,7 +166,7 @@ namespace DSA.List
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
-                Console.Write($"{aux.GetValue()} ");
+                Console.Write($"{aux.Value} ");
                 aux = (ListNode)aux.next;
             }
             Console.WriteLine();
@@ -169,7 +183,7 @@ namespace DSA.List
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
-                array.Add(aux.GetValue());
+                array.Add(aux.Value);
                 aux = aux.next;
             }
             return array;
@@ -180,5 +194,16 @@ namespace DSA.List
             return _len;
         }
 
+        public int this[int index]
+        {
+            get
+            {
+                return GetValue(index);
+            }
+            set
+            {
+                SetValue(index, value);
+            }
+        }
     }
 }
