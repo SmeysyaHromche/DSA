@@ -7,11 +7,34 @@ using System.Threading.Tasks;
 
 namespace DSA.BinaryTree.tests
 {
-    public class MyBTreeTest: Tester
+    public class MyBTreeTest : Tester
     {
         public override void RunAll()
         {
-            return;
+
+            Console.WriteLine("\n*** TEST FOR  BINARY TREE ***\n");
+            PreOrderTest();
+            InOrderTest();
+            PostOrderTest();
+            Console.WriteLine("\n*** *** *** *** ***\n");
+        }
+
+        public void PreOrderTest()
+        {
+
+            List<int> arr = _CreateArrByOrderOfNumber(10);
+            MyBTree tree = new MyBTree();
+            
+            
+        }
+        public void InOrderTest()
+        {
+
+        }
+
+        public void PostOrderTest()
+        {
+
         }
     }
 }

@@ -24,6 +24,6 @@ namespace DSA.List
         
         void Write();
 
-        int[] GetArray();
+        List<int> GetArray();
     }
 }

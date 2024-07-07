@@ -18,10 +18,7 @@ namespace DSA.BinaryTree
             rightN = null;
         }
 
-        public int GetValue()
-        {
-            return _value;
-        }
+        public int Value { get => _value; set => _value = value; }
 
 
     }

@@ -35,18 +35,11 @@ namespace DSA.test
             Console.ResetColor();
         }
 
-        protected int[] _CreateArrByOrderOfNumber(int size, bool flagByDeValue = false, int value = 0, bool flagReverse = false)
+        protected List<int> _CreateArrByOrderOfNumber(int size, bool flagByDeValue = false, int value = 0, bool flagReverse = false)
         {
-            int[] arr;
+            List<int> arr = new List<int>();
             int v;
-            if (size < 0)
-            {
-                arr = new int[0];
-            }
-            else
-            {
-                arr = new int[size];
-            }
+            
             if (!flagReverse)
             {
                 for (int i = 0; i < size; i++)
@@ -59,7 +52,7 @@ namespace DSA.test
                     {
                         v = i;
                     }
-                    arr[i] = v;
+                    arr.Add(v);
                 }
             }
             else
@@ -74,19 +67,19 @@ namespace DSA.test
                     {
                         v = i;
                     }
-                    arr[i] = v;
+                    arr.Insert(i, v);
                 }
             }
             return arr;
         }
-        protected int[] _CreateArrByOrderOfNumber(int from, int to, bool flagReverse=false)
+        protected List<int> _CreateArrByOrderOfNumber(int from, int to, bool flagReverse=false)
         {
             if(from > to || from == to)
             {
-                return new int[0];
+                return new List<int>();
             }
 
-            int[] arr = new int[to - from + 1];
+            List<int> arr = new List<int>();
             int v;
             
             if (!flagReverse)
@@ -94,7 +87,7 @@ namespace DSA.test
                 v = from;
                 for(int i = 0; i < to - from + 1; i++)
                 {
-                    arr[i] = v++;
+                    arr.Add(v++);
                 }
             }
             else
@@ -102,18 +95,18 @@ namespace DSA.test
                 v = to;
                 for (int i = 0; i < to - from + 1; i++)
                 {
-                    arr[i] = v--;
+                    arr.Add(v--);
                 }
             }
             return arr;
         }
-        protected int[] _RandomArr(int from, int to)
+        protected List<int> _RandomArr(int from, int to)
         {
-            int[] arr = _CreateArrByOrderOfNumber(from, to);
-            if(!(arr.Length < 2))
+            List<int> arr = _CreateArrByOrderOfNumber(from, to);
+            if(!(arr.Count < 2))
             {
                 Random random = new Random();
-                for (int i = arr.Length - 1; i > 0; i--)
+                for (int i = arr.Count - 1; i > 0; i--)
                 {
                     int j = random.Next(0, i + 1);
                     int temp = arr[i];

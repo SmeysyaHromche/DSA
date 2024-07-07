@@ -31,49 +31,49 @@ namespace DSA.List.tests
         public void TestInitEmpty()
         {
             MyLinkedList l = new MyLinkedList();
-            int[] test_arr = _CreateArrByOrderOfNumber(0);
-            int[] out_arr = l.GetArray();
+            List<int> test_arr = _CreateArrByOrderOfNumber(0);
+            List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByArr()
         {
-            int[] test_arr = _CreateArrByOrderOfNumber(10);
-            MyLinkedList l = new MyLinkedList(ref test_arr);
-            int[] out_arr = l.GetArray();
+            List<int> test_arr = _CreateArrByOrderOfNumber(10);
+            MyLinkedList l = new MyLinkedList(test_arr);
+            List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByAddFirst()
         {
-            int[] test_arr = _CreateArrByOrderOfNumber(10);
+            List<int> test_arr = _CreateArrByOrderOfNumber(10);
             MyLinkedList l = new MyLinkedList();
-            for (int i = 0; i < test_arr.Length; i++)
+            for (int i = 0; i < test_arr.Count; i++)
             {
                 l.AddFirst(test_arr[i]);
             }
-            int[] out_arr = l.GetArray();
-            Array.Reverse(test_arr);
+            List<int> out_arr = l.GetArray();
+            test_arr.Reverse();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByAddLast()
         {
-            int[] test_arr = _CreateArrByOrderOfNumber(10);
+            List<int> test_arr = _CreateArrByOrderOfNumber(10);
             MyLinkedList l = new MyLinkedList();
-            for (int i = 0; i < test_arr.Length; i++)
+            for (int i = 0; i < test_arr.Count; i++)
             {
                 l.AddLast(test_arr[i]);
             }
-            int[] out_arr = l.GetArray();
+            List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
         public void TestInitByStaticValue()
         {
             MyLinkedList l = new MyLinkedList(100, 0);
-            int[] test_arr = _CreateArrByOrderOfNumber(100, true);
-            int[] out_arr = l.GetArray();
+            List<int> test_arr = _CreateArrByOrderOfNumber(100, true);
+            List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr)); 
         }
 
@@ -81,8 +81,8 @@ namespace DSA.List.tests
         {
             MyLinkedList l = new MyLinkedList(100);
             l.Clear();
-            int[] test_arr = { };
-            int[] out_arr = l.GetArray();
+            List<int> test_arr = new List<int>();
+            List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
@@ -113,8 +113,8 @@ namespace DSA.List.tests
                 l.AddLast(i);
             }
             l.DeleteFirst();
-            int[] out_arr = l.GetArray();
-            int[] test_arr = _CreateArrByOrderOfNumber(from:1, to:99);
+            List<int> out_arr = l.GetArray();
+            List<int> test_arr = _CreateArrByOrderOfNumber(from:1, to:99);
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 
@@ -126,8 +126,8 @@ namespace DSA.List.tests
                 l.AddLast(i);
             }
             l.DeleteLast();
-            int[] out_arr = l.GetArray();
-            int[] test_arr = _CreateArrByOrderOfNumber(0, 98);
+            List<int> out_arr = l.GetArray();
+            List<int> test_arr = _CreateArrByOrderOfNumber(0, 98);
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,11 @@ namespace DSA.Sorting
         // ********************************************************
         //                     FINDING MINIMUM
         // ********************************************************
-        public static int FindMin(ref int[] arr)
+        public static int FindMin(List<int> arr)
         {
             int min_val = arr[0];
 
-            for (int i = 1; i < arr.Length; i++)
+            for (int i = 1; i < arr.Count; i++)
             {
                 if (arr[i] < min_val)
                 {
@@ -34,25 +35,26 @@ namespace DSA.Sorting
         // ********************************************************
         //                      BUBBLE SORT
         // ********************************************************
-        public static void BubbleSort(ref int[] arr)
+        public static List<int> BubbleSort(List<int> arr)
         {
 
-            int len = arr.Length;
+            int len = arr.Count;
             if (len < 2)
             {
-                return;
+                return arr;
             }
-
+            List<int> ret = new List<int>(arr);
             for (int i = 0; i < len; i++)
             {
                 for (int j = 0; j < len - i - 1; j++)
                 {
-                    if (arr[j] > arr[j + 1])
+                    if (ret[j] > ret[j + 1])
                     {
-                        Swap(ref arr, j, j + 1);
+                        Swap(ret, j, j + 1);
                     }
                 }
             }
+            return ret;
 
         }
         // ********************************************************
@@ -61,28 +63,29 @@ namespace DSA.Sorting
         // ********************************************************
         //                      SELECTION SORT
         // ********************************************************
-        public static void SelectionSortWithShifting(ref int[] arr)
+        public static List<int> SelectionSortWithShifting(List<int> arr)
         {
 
-            int len = arr.Length;
+            int len = arr.Count;
             if (len < 2)
             {
-                return;
+                return arr;
             }
-
+            List<int> ret = new List<int>(arr);
             for (int i = 0; i < len; i++)
             {
                 int index_min = i;
                 for (int j = i; j < len; j++)
                 {
-                    if (arr[j] < arr[index_min])
+                    if (ret[j] < ret[index_min])
                     {
                         index_min = j;
                     }
                 }
 
-                Swap(ref arr, index_min, i);
+                Swap(ret, index_min, i);
             }
+            return ret;
 
         }
         // ********************************************************
@@ -91,28 +94,29 @@ namespace DSA.Sorting
         // ********************************************************
         //                   INSERTION SORT
         // ********************************************************
-        public static void InsertSort(ref int[] arr)
+        public static List<int> InsertSort(List<int> arr)
         {
 
-            int len = arr.Length;
+            int len = arr.Count;
             if (len < 2)
             {
-                return;
+                return arr;
             }
-
+            List<int> ret = new List<int>(arr);
             for (int i = 1; i < len; i++)
             {
                 for (int j = i; j > 0; j--)
                 {
-                    if (arr[j - 1] > arr[j])
+                    if (ret[j - 1] > ret[j])
                     {
-                        Swap(ref arr, j - 1, j);
+                        Swap(ret, j - 1, j);
                         continue;
                     }
 
                     break;
                 }
             }
+            return ret;
         }
         // ********************************************************
 
@@ -120,27 +124,28 @@ namespace DSA.Sorting
         // ********************************************************
         //                      MERGE SORT
         // ********************************************************
-        public static void MergeSortWithRec(ref int[] arr)
+        public static List<int> MergeSortWithRec(List<int> arr)
         {
-            int len = arr.Length;
-            int[] aux = new int[len];
-            arr.CopyTo(aux, 0);
-            MergeSortWithRecCut(ref arr, ref aux, 0, len);
+            int len = arr.Count;
+            List<int> ret = new List<int>(arr);
+            List<int> aux = new List<int>(arr);
+            MergeSortWithRecCut(ref ret, aux, 0, len);
+            return ret;
         }
-        private static void MergeSortWithRecCut(ref int[] arr, ref int[] aux, int from, int to)
+        private static void MergeSortWithRecCut(ref List<int>  arr, List<int> aux, int from, int to)
         {
             if (to - from < 2)
             {
                 return;
             }
             int middle = (to + from) / 2;
-            MergeSortWithRecCut(ref arr, ref aux, from, middle);
-            MergeSortWithRecCut(ref arr, ref aux, middle, to);
-            MergeSortWithRecMerging(ref arr, ref aux, from, middle, to);
+            MergeSortWithRecCut(ref arr, aux, from, middle);
+            MergeSortWithRecCut(ref arr, aux, middle, to);
+            MergeSortWithRecMerging(ref arr, aux, from, middle, to);
 
         }
 
-        private static void MergeSortWithRecMerging(ref int[] arr, ref int[] aux, int from, int middle , int to)
+        private static void MergeSortWithRecMerging(ref List<int> arr, List<int> aux, int from, int middle , int to)
         {
             int i = from, j = middle;
             for (int k = from; k < to; k++)
@@ -159,7 +164,7 @@ namespace DSA.Sorting
                 }
             }
 
-            aux.CopyTo(arr, 0);
+            arr = new List<int>(aux);
 
         }
         // ********************************************************
@@ -168,26 +173,35 @@ namespace DSA.Sorting
         //                     QUIC  PART
         // ********************************************************
 
-        public static void QuickSort(ref int[]arr)
+        public static List<int> QuickSortwithRec(List<int> arr)
         {
-            QuickSortCore(ref arr, 0, arr.Length);
-        }
-
-        private static void QuickSortCore(ref int[] arr, int from, int to)
-        {
-            if(from < to)
+            int arr_len = arr.Count;
+            if (arr_len < 2)
             {
-                int p = QuickSortParit(ref arr, from , to);
-                QuickSortCore(ref arr, from , p);
-                QuickSortCore(ref arr, p, to);
+                return arr;
             }
+            int pivot = arr[arr_len / 2];
+            List<int> left = new List<int>();
+            List<int> middle = new List<int>();
+            List<int> right = new List<int>();
+            foreach (int i in arr)
+            {
+                if (i < pivot)
+                {
+                    left.Add(i);
+                }
+                else if (i == pivot)
+                {
+                    middle.Add(i);
+                }
+                else
+                {
+                    right.Add(i);
+                }
+            }
+            return QuickSortwithRec(left).Concat(middle).Concat(QuickSortwithRec(right)).ToList();
         }
-
-        private static int QuickSortParit(ref int[] arr, int from, int to)
-        {
-            //int p = arr[];
-            return 0;
-        }
+        
 
         // ********************************************************
 
@@ -195,7 +209,7 @@ namespace DSA.Sorting
         // ********************************************************
         //                     HELPFULL PART
         // ********************************************************
-        private static void ArrWrite(bool input, ref int[] arr)
+        private static void ArrWrite(bool input, List<int> arr)
         {
             if (input == true)
             {
@@ -212,9 +226,9 @@ namespace DSA.Sorting
             Console.WriteLine();
         }
 
-        private static void Swap(ref int[] arr, int i1, int i2)
+        private static void Swap(List<int> arr, int i1, int i2)
         {
-            if (arr.Length <= i1 || arr.Length <= i2)
+            if (arr.Count <= i1 || arr.Count <= i2)
             {
                 Console.WriteLine("Warning! Incorrect index for array");
                 return;

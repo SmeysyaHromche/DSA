@@ -15,10 +15,10 @@ namespace DSA.List
         {
         }
 
-        public MyLinkedList(ref int[] arr)
+        public MyLinkedList(List<int> arr)
         {
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Count; i++)
             {
                 AddLast(arr[i]);
             }
@@ -158,18 +158,18 @@ namespace DSA.List
             Console.WriteLine();
         }
 
-        public int[] GetArray()
+        public List<int> GetArray()
         {
             if (_len == 0)
             {
-                return new int[0];
+                return new List<int>();
             }
 
-            int[] array = new int[_len];
+            List<int> array = new List<int>();
             ListNode aux = _head;
             for (int i = 0; i < _len; i++)
             {
-                array[i] = aux.GetValue();
+                array.Add(aux.GetValue());
                 aux = aux.next;
             }
             return array;

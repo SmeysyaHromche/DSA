@@ -21,12 +21,13 @@ namespace DSA.Sorting.tests
             TestSelectSort();
             TestInsertSort();
             TestMergeSortWithRec();
+            TestQuickSortWithRec();
             Console.WriteLine("\n*** *** *** *** ***\n");
         }
 
         public void ParallelTests()
         {
-            int[] arr = _RandomArr(0, 100);
+            List<int> arr = _RandomArr(0, 100);
             Thread[] threads = new Thread[4];
             threads[0] = new Thread(new ParameterizedThreadStart(TestBubbleSort));
             threads[1] = new Thread(new ParameterizedThreadStart(TestSelectSort));
@@ -36,85 +37,66 @@ namespace DSA.Sorting.tests
             { 
                 threads[i].Start(arr);
             }
-
         }
 
         public void TestFindMin(object input_arr=null)
         {
-            int[] arr = InitArrFromParam((int[])input_arr, 0, 100);
-            int min = Sort.FindMin(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, min == 0);
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            int min = Sort.FindMin(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, min == 0);
          }
 
         public void TestBubbleSort(object input_arr = null)
         {
-            int[] arr = InitArrFromParam((int[])input_arr, 0, 100);
-            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
-            Sort.BubbleSort(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            List<int> test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            List<int> ouptut_arr = Sort.BubbleSort(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(ouptut_arr));
         }
 
         public void TestSelectSort(object input_arr = null)
         {
-            int[] arr = InitArrFromParam((int[])input_arr, 0, 100);
-            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
-            Sort.SelectionSortWithShifting(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            List<int> test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            List<int> ouptut_arr = Sort.SelectionSortWithShifting(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(ouptut_arr));
         }
 
         public void TestInsertSort(object input_arr = null)
         {
-            int[] arr = InitArrFromParam((int[])input_arr, 0, 100);
-            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
-            Sort.SelectionSortWithShifting(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            List<int> test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            List<int> ouptut_arr = Sort.SelectionSortWithShifting(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(ouptut_arr));
         }
 
         public void TestMergeSortWithRec(object input_arr = null)
         {
-            int[] arr = InitArrFromParam((int[])input_arr, 0, 100);
-            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
-            Sort.MergeSortWithRec(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            List<int> test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            List<int> output_arr = Sort.MergeSortWithRec(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(output_arr));
         }
 
-        public void TestQuickSort()
+        public void TestQuickSortWithRec(object input_arr = null)
         {
-            int[] arr = _RandomArr(0, 100);
-            int[] test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
-            Sort.QuickSort(ref arr);
-            lock (locker)
-            {
-                MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(arr));
-            }
+            List<int> arr = InitArrFromParam((List<int>)input_arr, 0, 100);
+            List<int> test_arr = _CreateArrByOrderOfNumber(from: 0, to: 100);
+            List<int> output_arr = Sort.QuickSortwithRec(arr);
+            MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(output_arr));
+            Console.WriteLine();
         }
 
-        private int[] InitArrFromParam(int[] input_test, int from, int to)
+        private List<int> InitArrFromParam(List<int> input_test, int from, int to)
         {
-            int[] arr;
+            List<int> arr;
             if(input_test == null)
             {
                 arr = _RandomArr(0, 100);
             }
             else 
             {
-                arr = new int[input_test.Length];
-                input_test.CopyTo(arr, 0);
+                arr = new List<int>(input_test);
             }
             return arr;
         }
