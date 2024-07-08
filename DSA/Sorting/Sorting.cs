@@ -132,7 +132,7 @@ namespace DSA.Sorting
             MergeSortWithRecCut(ref ret, aux, 0, len);
             return ret;
         }
-        private static void MergeSortWithRecCut(ref List<int>  arr, List<int> aux, int from, int to)
+        private static void MergeSortWithRecCut(ref List<int> arr, List<int> aux, int from, int to)
         {
             if (to - from < 2)
             {
@@ -145,7 +145,7 @@ namespace DSA.Sorting
 
         }
 
-        private static void MergeSortWithRecMerging(ref List<int> arr, List<int> aux, int from, int middle , int to)
+        private static void MergeSortWithRecMerging(ref List<int> arr, List<int> aux, int from, int middle, int to)
         {
             int i = from, j = middle;
             for (int k = from; k < to; k++)
@@ -154,7 +154,7 @@ namespace DSA.Sorting
                 {
                     aux[k] = arr[i++];
                 }
-                else if( i < middle && arr[i] <= arr[j])
+                else if (i < middle && arr[i] <= arr[j])
                 {
                     aux[k] = arr[i++];
                 }
@@ -201,7 +201,42 @@ namespace DSA.Sorting
             }
             return QuickSortwithRec(left).Concat(middle).Concat(QuickSortwithRec(right)).ToList();
         }
-        
+
+
+        // ********************************************************
+        // ********************************************************
+        //                     BINARY SEARCH PART
+        // ********************************************************
+
+        static public int BinarySearch(List<int> arr, int trg)
+        {
+            int len = arr.Count;
+            if (len == 0)
+            {
+                return -1;
+            }
+            int left = 0;
+            int right = len-1;
+            while (left <= right)
+            {
+                int middle = left + (right - left) / 2;
+                if (arr[middle] == trg)
+                {
+                    return middle;
+                }
+                else if (arr[middle] > trg)
+                {
+                    right = middle - 1;
+                }
+                else
+                {
+                    left = middle + 1;
+                }
+            }
+            return -1;
+        }
+
+
 
         // ********************************************************
 

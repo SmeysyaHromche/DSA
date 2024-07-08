@@ -9,7 +9,7 @@ namespace DSA.List
      public class ListNode
     {
         protected int _value = 0;
-        public int Value { get { return _value; } set { _value = value; } }
+        public int Value { get { return _value; } set { _value = value ;} }
         public ListNode next = null;
 
         public ListNode(int value)
