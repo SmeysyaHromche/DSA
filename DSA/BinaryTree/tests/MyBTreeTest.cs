@@ -23,7 +23,7 @@ namespace DSA.BinaryTree.tests
         {
 
             List<int> arr = _CreateArrByOrderOfNumber(10);
-            MyBTree tree = new MyBTree();
+            MyBTree<int> tree = new MyBTree<int>();
             
             
         }

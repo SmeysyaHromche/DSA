@@ -11,35 +11,35 @@ using System.Threading.Tasks;
 
 namespace DSA.BinaryTree
 {
-    public class MyBTree
+    public class MyBTree<T> where T : IComparable<T>
     {
-        private MyBTreeNode _root;
+        private MyBTreeNode<T> _root;
         public MyBTree()
         {
             _root = null;
         }
 
-        public void Insert(int value)
+        public void Insert(T value)
         {
             if (_root == null)
             {
-                _root = new MyBTreeNode(value);
+                _root = new MyBTreeNode<T>(value);
                 return;
             }
 
-            MyBTreeNode aux = _root;
+            MyBTreeNode<T> aux = _root;
             for (; ; )
             {
-                if (aux.Value == value)
+                if (aux == value)
                 {
                     Console.WriteLine($"value {value} already exist in tree");
                     return;
                 }
-                else if (aux.Value > value)
+                else if (aux > value)
                 {
                     if (aux.leftN == null)
                     {
-                        aux.leftN = new MyBTreeNode(aux.Value);
+                        aux.leftN = new MyBTreeNode<T>(aux.Value);
                         return;
                     }
                     aux = aux.leftN;
@@ -48,7 +48,7 @@ namespace DSA.BinaryTree
                 {
                     if (aux.rightN == null)
                     {
-                        aux.rightN = new MyBTreeNode(aux.Value);
+                        aux.rightN = new MyBTreeNode<T>(aux.Value);
                         return;
                     }
                     aux = aux.rightN;
@@ -56,18 +56,18 @@ namespace DSA.BinaryTree
             }
         }
 
-        public void RemoveByIter(int value)
+        public void RemoveByIter(T value)
         {
             if(_root == null)
             { return; }
-            MyBTreeNode aux = _root;
+            MyBTreeNode<T> aux = _root;
             while (_root != null)
             {
-                if (aux.Value == value)
+                if (aux == value)
                 {
                     _Remover(ref aux);
                 }
-                else if(aux.Value < value)
+                else if(aux < value)
                 {
                     aux = aux.rightN;
                 }
@@ -77,22 +77,22 @@ namespace DSA.BinaryTree
                 }
             }
         }
-        public void RemoveByRec(int value)
+        public void RemoveByRec(T value)
         {
             
             RemoveByRec(ref _root, value);
         }
-        public void RemoveByRec(ref MyBTreeNode node, int value)
+        public void RemoveByRec(ref MyBTreeNode<T> node, T value)
         {
             if (node == null)
             {
                 return;
             }
-            if (node.Value == value)
+            if (node == value)
             {
                 _Remover(ref node);
             }
-            else if (node.Value < value)
+            else if (node < value)
             {
                 RemoveByRec(ref node.rightN, value);
             }
@@ -102,7 +102,7 @@ namespace DSA.BinaryTree
             }
         }
 
-        private void _Remover(ref MyBTreeNode node)
+        private void _Remover(ref MyBTreeNode<T> node)
         {
             if (node == null)
             {
@@ -110,7 +110,7 @@ namespace DSA.BinaryTree
             }
             if(node.leftN != null && node.rightN != null)
             {
-                MyBTreeNode aux = FindMin(ref node);
+                MyBTreeNode<T> aux = FindMin(ref node);
                 node.Value = aux.Value;
                 _Remover(ref aux);
             }
@@ -127,18 +127,18 @@ namespace DSA.BinaryTree
                 node = null;
             }
         }
-        private MyBTreeNode FindMin(ref MyBTreeNode node)
+        private MyBTreeNode<T> FindMin(ref MyBTreeNode<T> node)
         {
             if (node == null)
             {
                 return node;
             }
 
-            MyBTreeNode aux = node;
-            MyBTreeNode min = node;
+            MyBTreeNode<T> aux = node;
+            MyBTreeNode<T> min = node;
             while(aux != null)
             {
-                if(aux.Value < min.Value)
+                if(aux < min)
                 {
                     min = aux;
                     aux = aux.leftN;
@@ -148,16 +148,16 @@ namespace DSA.BinaryTree
         }
 
 
-        public bool Find(int value)
+        public bool Find(T value)
         {
-            MyBTreeNode aux = _root;
+            MyBTreeNode<T> aux = _root;
             while (aux != null)
             {
-                if (aux.Value == value)
+                if (aux == value)
                 {
                     return true;
                 }
-                else if (aux.Value > value)
+                else if (aux > value)
                 {
                     aux = aux.leftN;
                 }
@@ -172,13 +172,13 @@ namespace DSA.BinaryTree
 
         public void Clear()=>_root = null;
 
-        public List<int> PreOrderRec()
+        public List<T> PreOrderRec()
         {
-            List<int> ret = new List<int>();
+            List<T> ret = new List<T>();
             PreOrderRec(ret, _root);
             return ret;
         }
-        public void PreOrderRec(List<int> ret, MyBTreeNode aux)
+        public void PreOrderRec(List<T> ret, MyBTreeNode<T> aux)
         {
             if (aux == null)
             {
@@ -188,13 +188,13 @@ namespace DSA.BinaryTree
             PreOrderRec(ret, aux.leftN);
             PreOrderRec(ret, aux.rightN);
         }
-        public List<int> InOrderRec()
+        public List<T> InOrderRec()
         {
-            List<int> ret = new List<int>();
+            List<T> ret = new List<T>();
             InOrderRec(ret, _root);
             return ret;
         }
-        public void InOrderRec(List<int> ret, MyBTreeNode aux)
+        public void InOrderRec(List<T> ret, MyBTreeNode<T> aux)
         {
             if (aux == null)
             {
@@ -204,13 +204,13 @@ namespace DSA.BinaryTree
             ret.Add(aux.Value);
             InOrderRec(ret, aux.rightN);
         }
-        public List<int> PostOrder()
+        public List<T> PostOrder()
         {
-            List<int> ret = new List<int>();
+            List<T> ret = new List<T>();
             InOrderRec(ret, _root);
             return ret;
         }
-        public void PostOrder(List<int> ret, MyBTreeNode aux)
+        public void PostOrder(List<T> ret, MyBTreeNode<T> aux)
         {
             if (aux == null)
             {
@@ -222,7 +222,7 @@ namespace DSA.BinaryTree
         }
         public int GetDepth() => GetDepth(_root);
 
-        public int GetDepth(MyBTreeNode aux)
+        public int GetDepth(MyBTreeNode<T> aux)
         {
             if(aux == null)
             {
