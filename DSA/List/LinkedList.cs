@@ -107,10 +107,9 @@ namespace DSA.List
             }
 
             ListNode<T> aux = _head;
-            ListNode<T> trg = new ListNode<T>(value);
             for (int i = 0; i < _len; i++)
             {
-                if (aux == trg)
+                if (aux == value)
                 {
                     return i;
                 }
