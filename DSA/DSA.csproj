@@ -50,6 +50,7 @@
     <Compile Include="List\LinkedList.cs" />
     <Compile Include="List\ListNode.cs" />
     <Compile Include="List\tests\LinkedListTest.cs" />
+    <Compile Include="Node\Node.cs" />
     <Compile Include="Queue\MyQueue.cs" />
     <Compile Include="Queue\tests\QueueTest.cs" />
     <Compile Include="Sorting\Sorting.cs" />
