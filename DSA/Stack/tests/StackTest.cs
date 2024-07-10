@@ -25,19 +25,19 @@ namespace DSA.Stack.tests
 
         public void TestInitEmptyTest()
         {
-            MyStack stack = new MyStack();
+            MyStack<int> stack = new MyStack<int>();
             MyAssert(MethodBase.GetCurrentMethod().Name, stack.IsEmpty());
         }
         public void TestPush()
         {
-            MyStack stack = new MyStack();
+            MyStack<int> stack = new MyStack<int>();
             stack.Push(1);
             MyAssert(MethodBase.GetCurrentMethod().Name, !stack.IsEmpty());
         }
 
         public void TestPop()
         {
-            MyStack stack = new MyStack();
+            MyStack<int> stack = new MyStack<int>();
             stack.Push(1);
             int result  = stack.Pop();
             MyAssert(MethodBase.GetCurrentMethod().Name, result == 1);
@@ -45,7 +45,7 @@ namespace DSA.Stack.tests
 
         public void TestTop()
         {
-            MyStack stack = new MyStack();
+            MyStack<int> stack = new MyStack<int>();
             for (int i = 0; i < 100; i++)
             { 
                 stack.Push(i);
@@ -55,7 +55,7 @@ namespace DSA.Stack.tests
 
         public void TestMultiPushPop()
         {
-            MyStack stack = new MyStack();
+            MyStack<int> stack = new MyStack<int>();
             for (int i = 0; i < 100; i++)
             { 
                 stack.Push(i);

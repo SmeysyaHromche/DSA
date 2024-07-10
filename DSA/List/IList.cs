@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DSA.List
 {
-    public interface IList
+    public interface IList<T> where T : IComparable<T>
     {
-        void AddFirst(int value);
+        void AddFirst(T value);
 
-        void AddLast(int value);
+        void AddLast(T value);
 
-        int GetValue(int index);
+        T GetValue(int index);
 
-        int GetIndex(int value);
+        int GetIndex(T value);
 
         void Clear();
 
@@ -24,6 +24,6 @@ namespace DSA.List
         
         void Write();
 
-        List<int> GetArray();
+        List<T> GetArray();
     }
 }

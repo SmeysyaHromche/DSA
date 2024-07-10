@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace DSA.List
 {
-    internal class MyLinkedList : IList
+    internal class MyLinkedList<T> : IList<T> where T : IComparable<T>
     {
-        protected ListNode _head = null;
+        protected ListNode<T> _head = null;
         protected int _len = 0;
 
-        public MyLinkedList()
-        {
-        }
-
-        public MyLinkedList(List<int> arr)
+        public MyLinkedList() { }
+        public MyLinkedList(List<T> arr)
         {
 
             for (int i = 0; i < arr.Count; i++)
@@ -25,76 +22,76 @@ namespace DSA.List
 
         }
 
-        public MyLinkedList(int size, int value = 0)
+        public MyLinkedList(int size, T value)
         {
-            _head = new ListNode(value);
-            ListNode aux = _head;
+            _head = new ListNode<T>(value);
+            ListNode<T> aux = _head;
             _len++;
             for (int i = 1; i < size; i++)
             {
-                aux.next = new ListNode(value);
-                aux = (ListNode)aux.next;
+                aux.next = new ListNode<T>(value);
+                aux = aux.next;
                 _len++;
             }
         }
 
-        public void AddFirst(int value)
+        public void AddFirst(T value)
         {
             if (_len == 0)
             {
-                _head = new ListNode(value);
+                _head = new ListNode<T>(value);
             }
             else
             {
-                ListNode aux = _head;
-                _head = new ListNode(value);
+                ListNode<T> aux = _head;
+                _head = new ListNode<T>(value);
                 _head.next = aux;
             }
             _len++;
         }
 
-        public void AddLast(int value)
+        public void AddLast(T value)
         {
             if (_len == 0)
             {
-                _head = new ListNode(value);
+                _head = new ListNode<T>(value);
             }
             else
             {
-                ListNode aux = _head;
+                ListNode<T> aux = _head;
                 while (aux.next != null)
                 {
-                    aux = (ListNode)aux.next;
+                    aux = aux.next;
                 }
-                aux.next = new ListNode(value);
+                aux.next = new ListNode<T>(value);
             }
 
             _len++;
         }
 
-        public int GetValue(int index)
+        public T GetValue(int index)
         {
             if (_len <= index || index < 0)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            ListNode aux = _head;
+            ListNode<T> aux = _head;
             for (int i = 0; i < index; i++)
             {
-                aux = (ListNode)aux.next;
+                aux = aux.next;
             }
 
             return aux.Value;
         }
 
-        public void SetValue(int  index, int value)
+        public void SetValue(int  index, T value)
         {
             if (index < 0 || index >= _len)
             {
                 throw new IndexOutOfRangeException();
             }
-            ListNode aux = _head;
+            ListNode<T> aux = _head;
             for (int i = 0; i < index; i++)
             {
                 aux = aux.next;
@@ -102,22 +99,23 @@ namespace DSA.List
             aux.Value = value;
         }
 
-        public int GetIndex(int value)
+        public int GetIndex(T value)
         {
             if (_len == 0)
             {
                 return -1;
             }
 
-            ListNode aux = _head;
+            ListNode<T> aux = _head;
+            ListNode<T> trg = new ListNode<T>(value);
             for (int i = 0; i < _len; i++)
             {
-                if (aux.Value == value)
+                if (aux == trg)
                 {
                     return i;
                 }
 
-                aux = (ListNode)aux.next;
+                aux = aux.next;
             }
 
             return -1;
@@ -148,7 +146,7 @@ namespace DSA.List
                 return;
             }
 
-            ListNode aux = _head;
+            ListNode<T> aux = _head;
             for (int i = 0; i < _len - 1; i++)
             {
                 aux = aux.next;
@@ -163,24 +161,24 @@ namespace DSA.List
             {
                 Console.WriteLine("Empty list");
             }
-            ListNode aux = _head;
+            ListNode<T> aux = _head;
             for (int i = 0; i < _len; i++)
             {
                 Console.Write($"{aux.Value} ");
-                aux = (ListNode)aux.next;
+                aux = aux.next;
             }
             Console.WriteLine();
         }
 
-        public List<int> GetArray()
+        public List<T> GetArray()
         {
             if (_len == 0)
             {
-                return new List<int>();
+                return new List<T>();
             }
 
-            List<int> array = new List<int>();
-            ListNode aux = _head;
+            List<T> array = new List<T>();
+            ListNode<T> aux = _head;
             for (int i = 0; i < _len; i++)
             {
                 array.Add(aux.Value);
@@ -194,7 +192,7 @@ namespace DSA.List
             return _len;
         }
 
-        public int this[int index]
+        public T this[int index]
         {
             get
             {

@@ -14,34 +14,35 @@ namespace DSA.Queue
         public ExceptionEmptyQueue(string message) : base(message) { }
     }
 
-    public class MyQueue{
+    public class MyQueue<T> where T : IComparable<T>
+    {
 
-        private MyLinkedList _queueBody;
+        private MyLinkedList<T> _queueBody;
         public MyQueue()
         {
-            _queueBody = new MyLinkedList();
+            _queueBody = new MyLinkedList<T>();
         }
 
-        public void Enqueue(int value)
+        public void Enqueue(T value)
         {
             _queueBody.AddLast(value);
         }
 
-        public int Dequeue()
+        public T Dequeue()
         {
             if (_queueBody.GetLength() == 0)
             {
                 throw new ExceptionEmptyStack();
             }
-            int value = _queueBody.GetValue(0);
+            T value = _queueBody[0];
             _queueBody.DeleteFirst();
             return value;
         }
 
-        public int Head()
+        public T Head()
         {
 
-            return _queueBody.GetValue(0);
+            return _queueBody[0];
 
         }
 

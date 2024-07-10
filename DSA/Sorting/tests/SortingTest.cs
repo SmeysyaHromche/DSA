@@ -23,6 +23,7 @@ namespace DSA.Sorting.tests
             TestMergeSortWithRec();
             TestQuickSortWithRec();
             TestBinarySearch();
+            TestSortinWithChar();
             Console.WriteLine("\n*** *** *** *** ***\n");
         }
 
@@ -100,6 +101,15 @@ namespace DSA.Sorting.tests
             MyAssert($"{MethodBase.GetCurrentMethod().Name}1", -1 == Sort.BinarySearch(arr, 101));
 
         }
+
+        public void TestSortinWithChar()
+        {
+            List<char> arr = new List<char>{ 'b', 'd', 'c', 'a' };
+            List<char> test_arr = new List<char>{ 'a', 'b', 'c', 'd'};
+            List<char> output_arr = Sort.QuickSortwithRec(arr);
+            MyAssert($"{MethodBase.GetCurrentMethod().Name}", test_arr.SequenceEqual(output_arr));
+        }
+
         private List<int> InitArrFromParam(List<int> input_test, int from, int to)
         {
             List<int> arr;

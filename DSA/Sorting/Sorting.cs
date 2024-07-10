@@ -16,14 +16,14 @@ namespace DSA.Sorting
         // ********************************************************
         //                     FINDING MINIMUM
         // ********************************************************
-        public static int FindMin(List<int> arr)
+        public static T FindMin<T>(List<T> arr) where T : IComparable<T>
         {
-            int min_val = arr[0];
+            T min_val = arr[0];
 
             for (int i = 1; i < arr.Count; i++)
             {
-                if (arr[i] < min_val)
-                {
+                if (arr[i].CompareTo(min_val) < 0)
+                { 
                     min_val = arr[i];
                 }
             }
@@ -35,7 +35,7 @@ namespace DSA.Sorting
         // ********************************************************
         //                      BUBBLE SORT
         // ********************************************************
-        public static List<int> BubbleSort(List<int> arr)
+        public static List<T> BubbleSort<T>(List<T> arr) where T : IComparable<T>
         {
 
             int len = arr.Count;
@@ -43,12 +43,12 @@ namespace DSA.Sorting
             {
                 return arr;
             }
-            List<int> ret = new List<int>(arr);
+            List<T> ret = new List<T>(arr);
             for (int i = 0; i < len; i++)
             {
                 for (int j = 0; j < len - i - 1; j++)
                 {
-                    if (ret[j] > ret[j + 1])
+                    if (ret[j].CompareTo(ret[j+1]) > 0)
                     {
                         Swap(ret, j, j + 1);
                     }
@@ -63,7 +63,7 @@ namespace DSA.Sorting
         // ********************************************************
         //                      SELECTION SORT
         // ********************************************************
-        public static List<int> SelectionSortWithShifting(List<int> arr)
+        public static List<T> SelectionSortWithShifting<T>(List<T> arr) where T : IComparable<T>
         {
 
             int len = arr.Count;
@@ -71,13 +71,13 @@ namespace DSA.Sorting
             {
                 return arr;
             }
-            List<int> ret = new List<int>(arr);
+            List<T> ret = new List<T>(arr);
             for (int i = 0; i < len; i++)
             {
                 int index_min = i;
                 for (int j = i; j < len; j++)
                 {
-                    if (ret[j] < ret[index_min])
+                    if (ret[j].CompareTo(ret[index_min]) < 0)
                     {
                         index_min = j;
                     }
@@ -94,7 +94,7 @@ namespace DSA.Sorting
         // ********************************************************
         //                   INSERTION SORT
         // ********************************************************
-        public static List<int> InsertSort(List<int> arr)
+        public static List<T> InsertSort<T>(List<T> arr) where T : IComparable<T>
         {
 
             int len = arr.Count;
@@ -102,12 +102,12 @@ namespace DSA.Sorting
             {
                 return arr;
             }
-            List<int> ret = new List<int>(arr);
+            List<T> ret = new List<T>(arr);
             for (int i = 1; i < len; i++)
             {
                 for (int j = i; j > 0; j--)
                 {
-                    if (ret[j - 1] > ret[j])
+                    if (ret[j - 1].CompareTo(ret[j]) > 0)
                     {
                         Swap(ret, j - 1, j);
                         continue;
@@ -124,15 +124,15 @@ namespace DSA.Sorting
         // ********************************************************
         //                      MERGE SORT
         // ********************************************************
-        public static List<int> MergeSortWithRec(List<int> arr)
+        public static List< T> MergeSortWithRec<T>(List<T> arr) where T : IComparable<T>
         {
             int len = arr.Count;
-            List<int> ret = new List<int>(arr);
-            List<int> aux = new List<int>(arr);
+            List<T> ret = new List<T>(arr);
+            List<T> aux = new List<T>(arr);
             MergeSortWithRecCut(ref ret, aux, 0, len);
             return ret;
         }
-        private static void MergeSortWithRecCut(ref List<int> arr, List<int> aux, int from, int to)
+        private static void MergeSortWithRecCut<T>(ref List<T> arr, List<T> aux, int from, int to) where T : IComparable<T>
         {
             if (to - from < 2)
             {
@@ -145,7 +145,7 @@ namespace DSA.Sorting
 
         }
 
-        private static void MergeSortWithRecMerging(ref List<int> arr, List<int> aux, int from, int middle, int to)
+        private static void MergeSortWithRecMerging<T>(ref List<T> arr, List<T> aux, int from, int middle, int to) where T : IComparable<T>
         {
             int i = from, j = middle;
             for (int k = from; k < to; k++)
@@ -154,7 +154,7 @@ namespace DSA.Sorting
                 {
                     aux[k] = arr[i++];
                 }
-                else if (i < middle && arr[i] <= arr[j])
+                else if (i < middle && arr[i].CompareTo(arr[j]) <= 0)
                 {
                     aux[k] = arr[i++];
                 }
@@ -164,7 +164,7 @@ namespace DSA.Sorting
                 }
             }
 
-            arr = new List<int>(aux);
+            arr = new List<T>(aux);
 
         }
         // ********************************************************
@@ -173,24 +173,24 @@ namespace DSA.Sorting
         //                     QUIC  PART
         // ********************************************************
 
-        public static List<int> QuickSortwithRec(List<int> arr)
+        public static List<T> QuickSortwithRec<T>(List<T> arr) where T : IComparable<T>
         {
             int arr_len = arr.Count;
             if (arr_len < 2)
             {
                 return arr;
             }
-            int pivot = arr[arr_len / 2];
-            List<int> left = new List<int>();
-            List<int> middle = new List<int>();
-            List<int> right = new List<int>();
-            foreach (int i in arr)
+            T pivot = arr[arr_len / 2];
+            List<T> left = new List<T>();
+            List<T> middle = new List<T>();
+            List<T> right = new List<T>();
+            foreach (T i in arr)
             {
-                if (i < pivot)
+                if (i.CompareTo(pivot) < 0)
                 {
                     left.Add(i);
                 }
-                else if (i == pivot)
+                else if (i.CompareTo(pivot) == 0)
                 {
                     middle.Add(i);
                 }
@@ -208,7 +208,7 @@ namespace DSA.Sorting
         //                     BINARY SEARCH PART
         // ********************************************************
 
-        static public int BinarySearch(List<int> arr, int trg)
+        static public int BinarySearch<T>(List<T> arr, T trg) where T : IComparable<T>
         {
             int len = arr.Count;
             if (len == 0)
@@ -220,11 +220,11 @@ namespace DSA.Sorting
             while (left <= right)
             {
                 int middle = left + (right - left) / 2;
-                if (arr[middle] == trg)
+                if (arr[middle].CompareTo(trg) == 0 )
                 {
                     return middle;
                 }
-                else if (arr[middle] > trg)
+                else if (arr[middle].CompareTo(trg) > 0)
                 {
                     right = middle - 1;
                 }
@@ -244,7 +244,7 @@ namespace DSA.Sorting
         // ********************************************************
         //                     HELPFULL PART
         // ********************************************************
-        private static void ArrWrite(bool input, List<int> arr)
+        private static void ArrWrite<T>(bool input, List<T> arr) where T : IComparable<T>
         {
             if (input == true)
             {
@@ -254,14 +254,14 @@ namespace DSA.Sorting
             {
                 Console.WriteLine("Output: ");
             }
-            foreach (int i in arr)
+            foreach (T i in arr)
             {
                 Console.Write($"{i} ");
             }
             Console.WriteLine();
         }
 
-        private static void Swap(List<int> arr, int i1, int i2)
+        private static void Swap<T>(List<T> arr, int i1, int i2) where T : IComparable<T>
         {
             if (arr.Count <= i1 || arr.Count <= i2)
             {
@@ -269,7 +269,7 @@ namespace DSA.Sorting
                 return;
             }
 
-            int tmp = arr[i1];
+            T tmp = arr[i1];
             arr[i1] = arr[i2];
             arr[i2] = tmp;
         

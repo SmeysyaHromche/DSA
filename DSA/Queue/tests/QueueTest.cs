@@ -24,19 +24,19 @@ namespace DSA.Queue.tests
 
         public void TestInitEmptyQueue()
         {
-            MyQueue queue = new MyQueue();
+            MyQueue<int> queue = new MyQueue<int>();
             MyAssert(MethodBase.GetCurrentMethod().Name, queue.IsEmpty());
         }
         public void TestEnqueue()
         {
-            MyQueue queue = new MyQueue();
+            MyQueue<int> queue = new MyQueue<int>();
             queue.Enqueue(1);
             MyAssert(MethodBase.GetCurrentMethod().Name, !queue.IsEmpty());
         }
 
         public void TestDequeue()
         {
-            MyQueue queue = new MyQueue();
+            MyQueue<int> queue = new MyQueue<int>();
             queue.Enqueue(1);
             int result = queue.Dequeue();
             MyAssert(MethodBase.GetCurrentMethod().Name, result == 1);
@@ -44,7 +44,7 @@ namespace DSA.Queue.tests
 
         public void TestHead()
         {
-            MyQueue queue = new MyQueue();
+            MyQueue<int> queue = new MyQueue<int>();
             for (int i = 0; i < 100; i++)
             {
                 queue.Enqueue(i);
@@ -54,7 +54,7 @@ namespace DSA.Queue.tests
 
         public void TestMultiEnqueueDequeue()
         {
-            MyQueue queue = new MyQueue();
+            MyQueue<int> queue = new MyQueue<int>();
             for (int i = 0; i < 100; i++)
             {
                 queue.Enqueue(i);

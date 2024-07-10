@@ -32,7 +32,7 @@ namespace DSA.List.tests
         }
         public void TestInitEmpty()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             List<int> test_arr = _CreateArrByOrderOfNumber(0);
             List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
@@ -41,7 +41,7 @@ namespace DSA.List.tests
         public void TestInitByArr()
         {
             List<int> test_arr = _CreateArrByOrderOfNumber(10);
-            MyLinkedList l = new MyLinkedList(test_arr);
+            MyLinkedList<int> l = new MyLinkedList<int>(test_arr);
             List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr));
         }
@@ -49,7 +49,7 @@ namespace DSA.List.tests
         public void TestInitByAddFirst()
         {
             List<int> test_arr = _CreateArrByOrderOfNumber(10);
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < test_arr.Count; i++)
             {
                 l.AddFirst(test_arr[i]);
@@ -62,7 +62,7 @@ namespace DSA.List.tests
         public void TestInitByAddLast()
         {
             List<int> test_arr = _CreateArrByOrderOfNumber(10);
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < test_arr.Count; i++)
             {
                 l.AddLast(test_arr[i]);
@@ -73,7 +73,7 @@ namespace DSA.List.tests
 
         public void TestInitByStaticValue()
         {
-            MyLinkedList l = new MyLinkedList(100, 0);
+            MyLinkedList<int> l = new MyLinkedList<int>(100, 0);
             List<int> test_arr = _CreateArrByOrderOfNumber(100, true);
             List<int> out_arr = l.GetArray();
             MyAssert(MethodBase.GetCurrentMethod().Name, test_arr.SequenceEqual(out_arr)); 
@@ -81,7 +81,7 @@ namespace DSA.List.tests
 
         public void TestClear()
         {
-            MyLinkedList l = new MyLinkedList(100);
+            MyLinkedList<int> l = new MyLinkedList<int>(100, 0);
             l.Clear();
             List<int> test_arr = new List<int>();
             List<int> out_arr = l.GetArray();
@@ -90,7 +90,7 @@ namespace DSA.List.tests
 
         public void TestGetValue()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for(int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -100,7 +100,7 @@ namespace DSA.List.tests
         
         public void TestSetValue()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -110,7 +110,7 @@ namespace DSA.List.tests
         }
         public void TestGetIndex()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -120,7 +120,7 @@ namespace DSA.List.tests
 
         public void TestDeleteFirst()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -133,7 +133,7 @@ namespace DSA.List.tests
 
         public void TestDeleteLast()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -146,7 +146,7 @@ namespace DSA.List.tests
 
         public void TestGetLength()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -156,7 +156,7 @@ namespace DSA.List.tests
 
         public void TestAccessByIndex()
         {
-            MyLinkedList l = new MyLinkedList();
+            MyLinkedList<int> l = new MyLinkedList<int>();
             for (int i = 0; i < 100; i++)
             {
                 l.AddLast(i);
@@ -166,7 +166,7 @@ namespace DSA.List.tests
                 l[100] = 10;
                 int test = l[100];
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             { }
             MyAssert(MethodBase.GetCurrentMethod().Name, 0 == l[0]);
         }

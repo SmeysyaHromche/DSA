@@ -12,37 +12,37 @@ namespace DSA.Stack
         public ExceptionEmptyStack() { }
         public ExceptionEmptyStack(string message) : base(message) { }
     }
-    public class MyStack
+    public class MyStack<T> where T : IComparable<T>
     {
         private int _top;
-        private MyLinkedList _stackBody;
+        private MyLinkedList<T> _stackBody;
         public MyStack()
         { 
             _top = -1;
-            _stackBody = new MyLinkedList();
+            _stackBody = new MyLinkedList<T>();
         }
         
-        public void Push(int value)
+        public void Push(T value)
         {
             _top++;
             _stackBody.AddLast(value);
         }
 
-        public int Pop()
+        public T Pop()
         {
             if (_top == -1)
             {
                 throw new ExceptionEmptyStack();
             }
-            int value = _stackBody.GetValue(_top--);
+            T value = _stackBody[_top--];
             _stackBody.DeleteLast();
             return value;
         }
 
-        public int Top()
+        public T Top()
         {
 
-            return _stackBody.GetValue(_top);
+            return _stackBody[_top];
         
         }
 
